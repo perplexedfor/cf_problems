@@ -4,8 +4,9 @@ using namespace std;
 
 void solve(){
     int l,r;
+    int n;
     cin >> l >> r;
-
+    cin >> n;
     int sum = 0;
     while(n != 0){
         sum += n%10;
