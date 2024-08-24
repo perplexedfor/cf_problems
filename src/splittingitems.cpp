@@ -10,29 +10,14 @@ void solve(){
         cin >> v[i];
     }
     sort(v.rbegin(),v.rend());
-    int maxVal = v[0];
-    int i = n - 1;
-    while(k != 0){
-        if(i < 0) break;
-        if(k > maxVal - v[i]){
-            // cout << v[i];
-            k -= maxVal - v[i];
-            // cout << k;
-            v[i] = maxVal;
-            i--;
-        }else{
-            v[i] += k;
-            k = 0;  
-        }
-    }
-    sort(v.rbegin(),v.rend());
     int res = 0;
     for(int i = 0;i < n;i++){
-
         if(i%2 == 0){
             res += v[i];
         }else{
-            res -= v[i];
+            int needed = min(k,v[i-1]-v[i]);
+            res -= v[i] + needed;
+            k -= needed;
         }
     }
     cout << res << '\n';
