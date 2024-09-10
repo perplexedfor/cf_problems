@@ -2,6 +2,7 @@
 using namespace std;
 int MOD = 1e9 + 7;
 const int maxnCr = 2e6+5;
+const int mod = 1e9 + 7;
 int nCr(int cnt,int r){
 
 }
@@ -20,11 +21,10 @@ void solve(){
             evenCnt++;
         }
     }
-    for(int i = 0;i <= k;i++){
-        int ways = nCr(oddCnt,i)*nCr(evenCnt,k-i);
-        if(i >= (k+1)/2){
-            sum += 1*ways;
-        }
+    int ans = 0;
+    for(int i = k/2 + 1;i <= min(oddCnt,k);i++){
+        sum += nCr(oddCnt,i)*nCr(evenCnt,k-i)%mod;
+        sum %= mod;
     }
     cout << sum << '\n';
 }

@@ -11,25 +11,25 @@ void solve(){
         if(s[i] == '?'){
             s[i] = t[j];
             j++;
-        }else if(s[i] == s[j]){
-            i++;
+        }else if(s[i] == t[j]){
             j++;
-        }else{
-            i++;
         }
+        i++;
     }
-    if(j != t.size()){
+    if(j < t.size()){
         cout << "NO" << '\n';
-    }
-    while(i < s.size()){
-        if(s[i] == '?'){
-            s[i] = 'a';
+    }else{
+        i = 0;
+        while(i < s.size()){
+            if(s[i] == '?'){
+                s[i] = 'a';
+            }
             i++;
         }
+        cout << "YES" << '\n';
+        cout << s << '\n';
     }
-    cout << "YES" << '\n';
-    cout << s;
-
+    
 }
 int main(){
     int t;

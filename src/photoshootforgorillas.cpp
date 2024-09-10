@@ -10,34 +10,26 @@ void solve(){
     for (int i = 0; i < w; i++) {
         cin >> wt[i];
     }
-
-    // Initialize the matrix with zeros
-    
-    // Use a max-heap (priority queue) to store the matrix values in descending order
-    priority_queue<int> pq;
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < m; j++) {
+    //weights
+    priority_queue<long long> pq;
+    for(int i = 0;i < n;i++){
+        for(int j = 0;j < m;j++){
             int l1 = max(0,i-k+1);
             int m1 = max(0,j-k+1);
-            int l2 = min(i,n-k);
-            int m2 = min(j,m-k);
-            pq.push((m2-m1+1)*(l2-l1+1));
+            int l2 = min(n-k,i);
+            int m2 = min(m-k,j);
+            pq.push((l2-l1+1)*(m2-m1+1));
         }
     }
-
-    // Sort weights in descending order
-    sort(wt.begin(), wt.end(), greater<int>());
-
     long long res = 0;
-    // Calculate result by multiplying the highest values from the matrix with the weights
-    for (int i = 0; i < w; i++) {
-        if (!pq.empty()) {
-            int cnt = pq.top();
-            pq.pop();
-            res += cnt * wt[i];
-        }
+    sort(wt.begin(),wt.end(),greater<int>());
+    for(int i = 0;i < w;i++){
+        long long val = pq.top();
+        pq.pop();
+        res += wt[i]*val;
     }
-    return;
+    cout << res << '\n';
+
     // cout << res << '\n';
 }
 int main(){
