@@ -1,1 +1,0 @@
-self(self,x+1,y);
